@@ -1,0 +1,132 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #313131;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	margin-top: 50px;
+	max-width: 700px;
+	padding: 20px;
+	background-color: #404040;
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 0;
+}
+
+hr {
+	border: 1px solid #f1f1f1;
+	margin-bottom: 25px;
+}
+
+input[type=text], input[type=password], input[type=email], select, input[type=date] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 10px;
+}
+
+button[type=submit] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 100%;
+}
+
+/* Define o estilo do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  /* Define o estilo dos campos do formulário */
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: none;
+    background-color: #e8e8e8;
+  }
+  
+  /* Define o estilo dos botões do formulário */
+  input[type="submit"], input[type="reset"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Define o estilo do botão de voltar */
+  .back-btn {
+    background-color: #f44336;
+  }
+  
+  /* Define o estilo das mensagens de erro */
+  .error {
+    color: red;
+  }
+  
+  /* Define o estilo do contêiner principal */
+  .container {
+    background-color: #1c1c1c;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 50px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Define o estilo do cabeçalho */
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Define o estilo do título */
+  .title {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  /* Define o estilo dos links */
+  a {
+    color: #fff;
+  }
+  
+  /* Define o estilo dos links quando estão com mouse hover */
+  a:hover {
+    text-decoration: underline;
+  }  
