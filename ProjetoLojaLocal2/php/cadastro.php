@@ -1,40 +1,35 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Verifica se o campo "nome" foi preenchido
-  if (!empty($_POST["nome"])) {
-    $nome = filter_var($_POST["nome"], FILTER_SANITIZE_STRING);
-  } else {
-    $erro = "O campo nome é obrigatório.";
-  }
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $to = 'guilhermegamabrum@gmail.com';
+  $subject = 'Novo cadastro';
 
-  // Verifica se o campo "email" foi preenchido e é um e-mail válido
-  if (!empty($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-    $email = $_POST["email"];
-  } else {
-    $erro = "O campo e-mail é obrigatório e deve ser um endereço de e-mail válido.";
-  }
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $senha = $_POST['senha'];
+  $data_nascimento = $_POST['data_nascimento'];
+  $confirmar_senha = $_POST['confirmar_senha'];
+  $telefone = $_POST['telefone'];
+  $genero = $_POST['genero'];
 
-  // Verifica se o campo "senha" foi preenchido
-  if (!empty($_POST["senha"])) {
-    $senha = filter_var($_POST["senha"], FILTER_SANITIZE_STRING);
-  } else {
-    $erro = "O campo senha é obrigatório.";
-  }
+  $message = "Nome: $nome\n";
+  $message .= "E-mail: $email\n";
+  $message .= "Senha: $senha\n";
+  $message .= "Data de nascimento: $data_nascimento\n";
+  $message .= "Telefone: $telefone\n";
+  $message .= "Gênero: $genero\n";
 
-  // Verifica se o checkbox "aceitar" foi marcado
-  if (!empty($_POST["aceitar"])) {
-    $aceitar = $_POST["aceitar"];
-  } else {
-    $erro = "Você deve aceitar os termos de uso e a política de privacidade para continuar.";
-  }
+  $headers = 'From: ' . $email . "\r\n" .
+             'Reply-To: ' . $email . "\r\n" .
+             'X-Mailer: PHP/' . phpversion();
 
-  // Se não houver nenhum erro, envia o e-mail de cadastro para o endereço do criador
-  if (empty($erro)) {
-    $to = "guilhermegamabrum@.com";
-    $subject = "Novo cadastro realizado";
-    $message = "Um novo cadastro foi realizado no site. Seguem os dados:\n\nNome: $nome\nE-mail: $email\nSenha: $senha";
-    $headers = "From: $email";
-    mail($to, $subject, $message, $headers);
+  try {
+    if(mail($to, $subject, $message, $headers)) {
+      echo 'Cadastro enviado com sucesso.';
+    } else {
+      throw new Exception('Erro ao enviar cadastro.');
+    }
+  } catch (Exception $e) {
+    echo $e->getMessage();
   }
 }
 ?>
