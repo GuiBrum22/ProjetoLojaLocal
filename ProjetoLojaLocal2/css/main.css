@@ -180,6 +180,8 @@ body {
         width: 29%;
         float: left;
         position: relative;
+        border-radius: 10px;
+        
     }
     
     .bloco-imagem img {

@@ -1,35 +1,29 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $to = 'guilhermegamabrum@gmail.com';
-  $subject = 'Novo cadastro';
+// Conexão com o banco de dados MySQL
+$servername = "localhost";
+$username = "seu_usuario";
+$password = "sua_senha";
+$dbname = "seu_banco_de_dados";
 
-  $nome = $_POST['nome'];
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
-  $data_nascimento = $_POST['data_nascimento'];
-  $confirmar_senha = $_POST['confirmar_senha'];
-  $telefone = $_POST['telefone'];
-  $genero = $_POST['genero'];
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+if (!$conn) {
+  die("Conexão falhou: " . mysqli_connect_error());
+}
 
-  $message = "Nome: $nome\n";
-  $message .= "E-mail: $email\n";
-  $message .= "Senha: $senha\n";
-  $message .= "Data de nascimento: $data_nascimento\n";
-  $message .= "Telefone: $telefone\n";
-  $message .= "Gênero: $genero\n";
+// Processamento do formulário de cadastro
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $nome = $_POST["nome"];
+  $email = $_POST["email"];
+  $senha = $_POST["senha"];
 
-  $headers = 'From: ' . $email . "\r\n" .
-             'Reply-To: ' . $email . "\r\n" .
-             'X-Mailer: PHP/' . phpversion();
-
-  try {
-    if(mail($to, $subject, $message, $headers)) {
-      echo 'Cadastro enviado com sucesso.';
-    } else {
-      throw new Exception('Erro ao enviar cadastro.');
-    }
-  } catch (Exception $e) {
-    echo $e->getMessage();
+  // Inserção do novo usuário na tabela do banco de dados
+  $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+  if (mysqli_query($conn, $sql)) {
+    echo "Cadastro realizado com sucesso!";
+  } else {
+    echo "Erro ao cadastrar: " . mysqli_error($conn);
   }
 }
+
+mysqli_close($conn);
 ?>
